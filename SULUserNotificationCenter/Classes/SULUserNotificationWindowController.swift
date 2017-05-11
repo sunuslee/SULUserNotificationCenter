@@ -8,31 +8,21 @@
 
 import Cocoa
 
-@objc protocol SULUserNotificationCenterDelegate {
-    
-    @objc optional func userNotificationCenter(_ center:SULUserNotificationCenter, didDeliver notification:NSUserNotification)
-    
-    @objc optional func userNotificationCenter(_ center:SULUserNotificationCenter, didActivate notification: NSUserNotification)
-    
-    @objc optional func userNotificationCenter(_ center:SULUserNotificationCenter, shouldPresent notification: NSUserNotification) -> Bool
-    
-    // additional handy functions
-    @objc optional func userNotificationCenter(_ center:SULUserNotificationCenter, didCancel notification: NSUserNotification)
-}
-
 class SULUserNotificationWindowController: NSWindowController {
     
     @IBOutlet weak var title: NSTextField!
     @IBOutlet weak var informativeText: NSTextField!
     @IBOutlet weak var leftContentImageView: NSImageView!
+    @IBOutlet weak var subtitle: NSTextField!
+    
     
     var identifier:String?
     
     let notificationWidth:CGFloat = 344.0
     let notificationHeight:CGFloat = 64.0
     let actionButtonWidth:CGFloat = 80.0
-    let contentImageWidth:CGFloat = 48.0
-    let contentImageHeight:CGFloat = 48.0
+    let contentImageWidth:CGFloat = 40.0
+    let contentImageHeight:CGFloat = 40.0
     let notificationY:CGFloat = 795.0
     
     var currentNotification: NSUserNotification?
@@ -44,7 +34,6 @@ class SULUserNotificationWindowController: NSWindowController {
     var contentImage:NSImage?
     var leftContentImage:NSImage?
     
-    var delegate:SULUserNotificationCenterDelegate?
     var notificationCenter:SULUserNotificationCenter?
     
     override open func windowDidLoad() {
@@ -67,7 +56,9 @@ class SULUserNotificationWindowController: NSWindowController {
          responsePlaceholder = notification.responsePlaceholder
          */
         
-        if leftContentImage == nil {
+        if let image = currentNotification?.leftImage {
+            leftContentImage = image
+        } else {
             let appPath = Bundle.main.bundlePath
             leftContentImage =  NSWorkspace.shared().icon(forFile: appPath)
         }
@@ -77,6 +68,7 @@ class SULUserNotificationWindowController: NSWindowController {
         addButton()
         addContentImage()
         resizeTextField()
+        appendSubtitle()
         
     }
     
@@ -144,8 +136,8 @@ class SULUserNotificationWindowController: NSWindowController {
     func addButton()  {
         guard let window = self.window,
             let contentView = self.window?.contentView,
-            let actionButtonTitle = actionButtonTitle,
-            let otherButtonTitle = otherButtonTitle
+            let actionButtonTitle = actionButtonTitle, actionButtonTitle != "",
+            let otherButtonTitle = otherButtonTitle, otherButtonTitle != ""
         else { return }
         
         let buttonHeight = window.frame.size.height / 2.0
@@ -183,15 +175,21 @@ class SULUserNotificationWindowController: NSWindowController {
             let _ = currentNotification?.otherButtonTitle {
             originX -= actionButtonWidth
         }
-        Swift.print("\(originY)")
+        
+        imgView.frame = NSMakeRect(originX,
+                                   originY,
+                                   contentImageWidth,
+                                   contentImageHeight)
         
         contentView.addSubview(imgView)
     }
     
     func resizeTextField() {
         var spaceToReduce:CGFloat = 0
-        if let _ = currentNotification?.actionButtonTitle,
-            let _ = currentNotification?.otherButtonTitle {
+        
+        if let s = currentNotification?.actionButtonTitle, !s.isEmpty {
+            spaceToReduce += actionButtonWidth
+        } else if let ss = currentNotification?.otherButtonTitle, !ss.isEmpty {
             spaceToReduce += actionButtonWidth
         }
         
@@ -206,16 +204,40 @@ class SULUserNotificationWindowController: NSWindowController {
         }
     }
     
+    func appendSubtitle() {
+        if let st = currentNotification?.subtitle, !st.isEmpty {
+            subtitle.stringValue = st
+            subtitle.isHidden = false
+            var frame = informativeText.frame
+            //frame.origin.y -= 1
+            frame.size.height = 16
+            informativeText.frame = frame
+            
+            /*
+            if #available(OSX 10.11, *) {
+                informativeText.maximumNumberOfLines = 1
+            } else {
+                // Fallback on earlier versions
+            }
+ */
+        } else {
+            subtitle.isHidden = true
+        }
+    }
     
     func clickActionButton(_ sender:Any)  {
+        #if DEBUG
         Swift.print("Function: \(type(of:self)) \(#function), line: \(#line)")
-        self.delegate?.userNotificationCenter?(notificationCenter!, didActivate: currentNotification!)
+        #endif
+        self.notificationCenter?.delegate?.userNotificationCenter?(notificationCenter!, didActivate: currentNotification!)
         self.close()
     }
     
     func clickOtherButton(_ sender:Any)  {
+        #if DEBUG
         Swift.print("Function: \(type(of:self)) \(#function), line: \(#line)")
-        self.delegate?.userNotificationCenter?(notificationCenter!, didCancel: currentNotification!)
+        #endif
+        self.notificationCenter?.delegate?.userNotificationCenter?(notificationCenter!, didCancel: currentNotification!)
         self.close()
     }
     

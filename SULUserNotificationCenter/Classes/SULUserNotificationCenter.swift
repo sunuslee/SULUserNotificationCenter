@@ -12,6 +12,17 @@
 
 import Cocoa
 
+@objc public protocol SULUserNotificationCenterDelegate {
+    
+    @objc optional func userNotificationCenter(_ center:SULUserNotificationCenter, didDeliver notification:NSUserNotification)
+    
+    @objc optional func userNotificationCenter(_ center:SULUserNotificationCenter, didActivate notification: NSUserNotification)
+    
+    @objc optional func userNotificationCenter(_ center:SULUserNotificationCenter, shouldPresent notification: NSUserNotification) -> Bool
+    
+    // additional handy functions
+    @objc optional func userNotificationCenter(_ center:SULUserNotificationCenter, didCancel notification: NSUserNotification)
+}
 
 
 open class SULUserNotificationCenter: NSObject {
@@ -19,7 +30,9 @@ open class SULUserNotificationCenter: NSObject {
     var currentNotification:NSUserNotification?
     var notifications:[SULUserNotificationWindowController] = []
    
-    public static let sharedInstance: SULUserNotificationCenter = {
+    public var delegate:SULUserNotificationCenterDelegate?
+    
+    public static let `default`: SULUserNotificationCenter = {
         let instance = SULUserNotificationCenter()
         // setup code
         return instance
@@ -36,18 +49,7 @@ open class SULUserNotificationCenter: NSObject {
  */
     
     public func deliver(_ notification: NSUserNotification) {
-        /*
-        currentNotification = notification
-        self.post(title: notification.title,
-                  subtitle: notification.subtitle,
-                  informativeText: notification.informativeText,
-                  actionButtonTitle: notification.actionButtonTitle,
-                  otherButtonTitle: notification.otherButtonTitle,
-                  contentImage: notification.contentImage,
-                  identifier: notification.identifier,
-                  response: notification.response,
-                  responsePlaceholder: notification.responsePlaceholder)
- */
+        
         let notificationWindow = SULUserNotificationWindowController.init(notification,
                                                                           notificationCenter: self)
         notifications.append(notificationWindow)
