@@ -14,6 +14,7 @@ enum BorderEdge {
     case left
     case bottom
     case right
+    case unknown
 }
 
 extension CALayer {
