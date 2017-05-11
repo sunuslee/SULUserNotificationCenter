@@ -12,55 +12,18 @@
 
 import Cocoa
 
-@objc protocol SULUserNotificationCenterDelegate {
-    
-    @objc optional func userNotificationCenter(_ center:SULUserNotificationCenter, didDeliver notification:NSUserNotification)
-    
-    @objc optional func userNotificationCenter(_ center:SULUserNotificationCenter, didActivate notification: NSUserNotification)
-    
-    @objc optional func userNotificationCenter(_ center:SULUserNotificationCenter, shouldPresent notification: NSUserNotification) -> Bool
-    
-    // additional handy functions
-    @objc optional func userNotificationCenter(_ center:SULUserNotificationCenter, didCancel notification: NSUserNotification)
-}
 
-open class SULUserNotificationCenter: NSWindowController {
-    
-    @IBOutlet weak var title: NSTextField!
-    @IBOutlet weak var informativeText: NSTextField!
-    @IBOutlet weak var leftContentImageView: NSImageView!
+
+open class SULUserNotificationCenter: NSObject {
     
     var currentNotification:NSUserNotification?
-    
-    var delegate:SULUserNotificationCenterDelegate?
-    
-    let notificationWidth:CGFloat = 344.0
-    let notificationHeight:CGFloat = 64.0
-    let actionButtonWidth:CGFloat = 80.0
-    let contentImageWidth:CGFloat = 48.0
-    let contentImageHeight:CGFloat = 48.0
-    let notificationY:CGFloat = 795.0
-    
-    var hasActionButton = true
-    var hasOtherButton = false
-    var hasReplyButton = false
-    var actionButtonTitle:String?
-    var otherButtonTitle:String?
-    
+    var notifications:[SULUserNotificationWindowController] = []
+   
     public static let sharedInstance: SULUserNotificationCenter = {
-        let instance = SULUserNotificationCenter(windowNibName: "SULUserNotificationCenter")
+        let instance = SULUserNotificationCenter()
         // setup code
         return instance
     }()
-    
-    override open func windowDidLoad() {
-        super.windowDidLoad()
-        // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
-        guard let w = self.window else {
-            return
-        }
-        w.backgroundColor = NSColor.clear
-    }
     
     /*
     open override func mouseEntered(with event: NSEvent) {
@@ -73,6 +36,7 @@ open class SULUserNotificationCenter: NSWindowController {
  */
     
     public func deliver(_ notification: NSUserNotification) {
+        /*
         currentNotification = notification
         self.post(title: notification.title,
                   subtitle: notification.subtitle,
@@ -83,6 +47,13 @@ open class SULUserNotificationCenter: NSWindowController {
                   identifier: notification.identifier,
                   response: notification.response,
                   responsePlaceholder: notification.responsePlaceholder)
+ */
+        let notificationWindow = SULUserNotificationWindowController.init(notification,
+                                                                          notificationCenter: self)
+        notifications.append(notificationWindow)
+        
+        notificationWindow.displayNotification()
+        
     }
     
     open func post(title:String?,
@@ -95,6 +66,7 @@ open class SULUserNotificationCenter: NSWindowController {
                    response: NSAttributedString?,
                    responsePlaceholder:String?) {
         
+        /* TODO
         guard let w = self.window,
               let mainScreenFrame = NSScreen.main()?.frame
         else { return  }
@@ -182,99 +154,11 @@ open class SULUserNotificationCenter: NSWindowController {
                                                         NSTrackingAreaOptions.activeAlways], owner:self, userInfo: nil)
             w.contentView?.addTrackingArea(trackingArea)
         }
-    }
-    
-    func resizeTextField() {
-        var spaceToReduce:CGFloat = 0
-        if let _ = currentNotification?.actionButtonTitle,
-            let _ = currentNotification?.otherButtonTitle {
-            spaceToReduce += actionButtonWidth
-        }
-        
-        if let _ = currentNotification?.contentImage {
-            spaceToReduce += contentImageWidth
-        }
-        
-        if spaceToReduce != 0 {
-            var frame = informativeText.frame
-            frame.size.width = frame.size.width - spaceToReduce
-            informativeText.frame = frame
-        }
+ */
     }
     
     
-    func addButton()  {
-        guard let window = self.window,
-            let contentView = self.window?.contentView,
-            let actionButtonTitle = currentNotification?.actionButtonTitle,
-            let otherButtonTitle = currentNotification?.otherButtonTitle
-        else { return }
-        
-        let buttonHeight = window.frame.size.height / 2.0
-        let otherButtonFrame = NSMakeRect(notificationWidth - actionButtonWidth, buttonHeight, actionButtonWidth, buttonHeight);
-        let actionButtonFrame = NSMakeRect(notificationWidth - actionButtonWidth, 0, actionButtonWidth, buttonHeight);
-        let otherButton = SULUserNotificationButton.init(otherButtonFrame,
-                                                          title: otherButtonTitle,
-                                                          target: self,
-                                                          action: #selector(clickOtherButton(_:)))
-        
-        let actionButton = SULUserNotificationButton.init(actionButtonFrame,
-                                                          title: actionButtonTitle,
-                                                          target: self,
-                                                          action: #selector(clickActionButton(_:)))
-        
-        otherButton.addBottomBorder()
-        NSAnimationContext.beginGrouping()
-        NSAnimationContext.current().duration = 1.0
-        contentView.animator().addSubview(otherButton)
-        contentView.animator().addSubview(actionButton)
-        NSAnimationContext.endGrouping()
-    }
-    
-    func addContentImage() {
-        guard let img = currentNotification?.contentImage,
-            let contentView = self.window?.contentView
-        else { return }
-        
-        img.size = NSMakeSize(contentImageWidth, contentImageHeight)
-        let imgView = NSImageView()
-        imgView.image = img
-        var originX = notificationWidth - contentImageWidth - 8
-        var originY = (notificationHeight - contentImageHeight) / 2.0
-        if let _ = currentNotification?.actionButtonTitle,
-            let _ = currentNotification?.otherButtonTitle {
-            originX -= actionButtonWidth
-        }
-        
-        
-        
-        contentView.addSubview(imgView)
-    }
     
     
-    func clickActionButton(_ sender:Any)  {
-        Swift.print("Function: \(type(of:self)) \(#function), line: \(#line)")
-        self.delegate?.userNotificationCenter?(self, didActivate: currentNotification!)
-        self.close()
-    }
     
-    func clickOtherButton(_ sender:Any)  {
-        Swift.print("Function: \(type(of:self)) \(#function), line: \(#line)")
-        self.delegate?.userNotificationCenter?(self, didCancel: currentNotification!)
-        self.close()
-    }
-    
-    func removeButton() {
-        guard let contentView = self.window?.contentView else {
-            return
-        }
-        NSAnimationContext.beginGrouping()
-        NSAnimationContext.current().duration = 1.0
-        for v in contentView.subviews {
-            if v is SULUserNotificationButton {
-                v.animator().removeFromSuperview()
-            }
-        }
-        NSAnimationContext.endGrouping()
-    }
 }

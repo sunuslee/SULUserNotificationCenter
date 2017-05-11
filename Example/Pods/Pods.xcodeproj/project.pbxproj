@@ -7,20 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		01B305555089564209AD0A51434BD142 /* SULUserNotificationCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C22277FE117EB79ABE731D83DBF3B74 /* SULUserNotificationCenter.swift */; };
 		03A7B8D25830A4034F3C00073DFC44F5 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 270DD1219F1E6CF00379D39F252D87C6 /* Cocoa.framework */; };
-		0536CCEA8F1CDC9A29435B9EDFA5EFC3 /* SULUserNotificationCenter.xib in Sources */ = {isa = PBXBuildFile; fileRef = 74DCA4386A6181F24FC9BED22EC73EAC /* SULUserNotificationCenter.xib */; };
 		2A58F7B87D7CACCC740A1A8A58F76BA0 /* SULUserNotificationCenter-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 4BC241F1318EDA0BA64EC28580EBC4FF /* SULUserNotificationCenter-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3772AB7455432118D312FC96D7714D38 /* Pods-SULUserNotificationCenterExampleTests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A9B3E920E7DAB95F0948FEFF80BA056 /* Pods-SULUserNotificationCenterExampleTests-dummy.m */; };
-		383A5F9CCDB1D24D14FBC7DD372C26DF /* SULUserNotificationCenter-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = D3A2009CFC3BF5C18E61E7D8B94630D1 /* SULUserNotificationCenter-dummy.m */; };
-		846C3A029E7B0EA97B83287190D5BDAD /* SULUserNotificationBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48EA9BF0F7401C55DF186F08FEB539D /* SULUserNotificationBackgroundView.swift */; };
-		8F520B291EC40A6E00CC900F /* SULUserNotificationWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F520B271EC40A6E00CC900F /* SULUserNotificationWindowController.swift */; };
+		5E9035CCCC45CAE5B181571C60D9B8A2 /* SULUserNotificationBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39F0B88EA8216401A798D3C0F808A48 /* SULUserNotificationBackgroundView.swift */; };
+		6252770B544935408B5C253373550CCF /* SULUserNotificationCenter-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = D3A2009CFC3BF5C18E61E7D8B94630D1 /* SULUserNotificationCenter-dummy.m */; };
+		8AF850CFE371DF4724DD58D272B96514 /* NSViewBorderExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B84D6FFA508C198E47048393A03A742 /* NSViewBorderExtension.swift */; };
 		B4FDDBB905B798CF514D25DAFDB4DDC8 /* Pods-SULUserNotificationCenterExample-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 175B4892A117F78675D816149BCF80DF /* Pods-SULUserNotificationCenterExample-dummy.m */; };
-		B7C8FE61CC82E19E6C9402B7A2605627 /* SULUserNotificationCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C6FB091CCA4CA3FED38BFF9597AE01 /* SULUserNotificationCenter.swift */; };
+		B6772815C025075C5F1F36ACBEFF5140 /* SULUserNotificationWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7EF675F76659FA78D4DE0940688FF1 /* SULUserNotificationWindowController.swift */; };
 		BB65A5F0A2AC77FDB31E5F4A81595FAE /* Pods-SULUserNotificationCenterExample-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = D38FCEED1DF3343127A0D7A7BB8F5CC7 /* Pods-SULUserNotificationCenterExample-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C30FADD5D7570FAE88AA8663F2406EDC /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 270DD1219F1E6CF00379D39F252D87C6 /* Cocoa.framework */; };
+		C9E431A067758C3095D70CF90D6C849D /* SULUserNotificationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7506B7AC4772E810F428990F7D9D2715 /* SULUserNotificationButton.swift */; };
 		D25C165ED3842F3523E87703225F8833 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 270DD1219F1E6CF00379D39F252D87C6 /* Cocoa.framework */; };
-		DE14DB308FC55A8EEBB8A9F21CF39D95 /* SULUserNotificationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A4E7EE7997DE87BC82967BDB6C2CC3 /* SULUserNotificationButton.swift */; };
-		F4D26C884322A00F0C8C6EBA7E1F8FCE /* NSViewBorderExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66707CC30986823354784DD3DBA5C44E /* NSViewBorderExtension.swift */; };
+		E4D99F436B8C4DD4205D3D26A4095A8D /* SULUserNotificationWindowController.xib in Sources */ = {isa = PBXBuildFile; fileRef = 12F1D48F9B267512FFEAAF3B449C581C /* SULUserNotificationWindowController.xib */; };
 		FA9D1E16806932A0EF8DEB4F939FF3BF /* Pods-SULUserNotificationCenterExampleTests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 98B18347DE70876471B3D62470C04157 /* Pods-SULUserNotificationCenterExampleTests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
@@ -35,43 +35,42 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0307A24A68C1F0E01772C4260C9096EF /* SULUserNotificationCenter.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = SULUserNotificationCenter.modulemap; sourceTree = "<group>"; };
-		15A4E7EE7997DE87BC82967BDB6C2CC3 /* SULUserNotificationButton.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SULUserNotificationButton.swift; sourceTree = "<group>"; };
+		0307A24A68C1F0E01772C4260C9096EF /* SULUserNotificationCenter.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = SULUserNotificationCenter.modulemap; sourceTree = "<group>"; };
+		0C22277FE117EB79ABE731D83DBF3B74 /* SULUserNotificationCenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SULUserNotificationCenter.swift; sourceTree = "<group>"; };
+		12F1D48F9B267512FFEAAF3B449C581C /* SULUserNotificationWindowController.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; path = SULUserNotificationWindowController.xib; sourceTree = "<group>"; };
 		175B4892A117F78675D816149BCF80DF /* Pods-SULUserNotificationCenterExample-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-SULUserNotificationCenterExample-dummy.m"; sourceTree = "<group>"; };
 		1785FCB96669D6743AE9DCC31BE63660 /* Pods-SULUserNotificationCenterExample-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-SULUserNotificationCenterExample-resources.sh"; sourceTree = "<group>"; };
 		198F9968D8994A7E9A2EDB7720582C5A /* Pods-SULUserNotificationCenterExampleTests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-SULUserNotificationCenterExampleTests-frameworks.sh"; sourceTree = "<group>"; };
 		246E2F876263CB4712DA5D09C0EED390 /* Pods-SULUserNotificationCenterExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SULUserNotificationCenterExample.debug.xcconfig"; sourceTree = "<group>"; };
 		270DD1219F1E6CF00379D39F252D87C6 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/System/Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
 		2B384745D5BF3370DB35AE0FCFB1E74E /* Pods-SULUserNotificationCenterExample-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SULUserNotificationCenterExample-acknowledgements.plist"; sourceTree = "<group>"; };
-		37CFEA66C51AF31B5C3B76AB0ECDF22B /* Pods-SULUserNotificationCenterExampleTests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-SULUserNotificationCenterExampleTests.modulemap"; sourceTree = "<group>"; };
+		37CFEA66C51AF31B5C3B76AB0ECDF22B /* Pods-SULUserNotificationCenterExampleTests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-SULUserNotificationCenterExampleTests.modulemap"; sourceTree = "<group>"; };
+		3B84D6FFA508C198E47048393A03A742 /* NSViewBorderExtension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = NSViewBorderExtension.swift; sourceTree = "<group>"; };
 		3C7944616D8AD7350F9D1C50F555B41E /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3D6B768DBB5B6B3AC60D4DFA227B1D1E /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		439193AE58B99526E570DF9D5D213697 /* SULUserNotificationCenter-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SULUserNotificationCenter-prefix.pch"; sourceTree = "<group>"; };
 		4A9B3E920E7DAB95F0948FEFF80BA056 /* Pods-SULUserNotificationCenterExampleTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-SULUserNotificationCenterExampleTests-dummy.m"; sourceTree = "<group>"; };
 		4BC241F1318EDA0BA64EC28580EBC4FF /* SULUserNotificationCenter-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SULUserNotificationCenter-umbrella.h"; sourceTree = "<group>"; };
-		50922AEAE4F98980B410D60C802F942D /* SULUserNotificationCenter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SULUserNotificationCenter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		66707CC30986823354784DD3DBA5C44E /* NSViewBorderExtension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = NSViewBorderExtension.swift; sourceTree = "<group>"; };
-		6C6C8F7DBC67AC90430FEA009C0E3F19 /* Pods-SULUserNotificationCenterExample.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-SULUserNotificationCenterExample.modulemap"; sourceTree = "<group>"; };
-		74DCA4386A6181F24FC9BED22EC73EAC /* SULUserNotificationCenter.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; path = SULUserNotificationCenter.xib; sourceTree = "<group>"; };
-		80C6FB091CCA4CA3FED38BFF9597AE01 /* SULUserNotificationCenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SULUserNotificationCenter.swift; sourceTree = "<group>"; };
-		81EF0EB21B7ABAF8D7EF65D9F96447E5 /* Pods_SULUserNotificationCenterExampleTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SULUserNotificationCenterExampleTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		50922AEAE4F98980B410D60C802F942D /* SULUserNotificationCenter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SULUserNotificationCenter.framework; path = SULUserNotificationCenter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6C6C8F7DBC67AC90430FEA009C0E3F19 /* Pods-SULUserNotificationCenterExample.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-SULUserNotificationCenterExample.modulemap"; sourceTree = "<group>"; };
+		7506B7AC4772E810F428990F7D9D2715 /* SULUserNotificationButton.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SULUserNotificationButton.swift; sourceTree = "<group>"; };
+		81EF0EB21B7ABAF8D7EF65D9F96447E5 /* Pods_SULUserNotificationCenterExampleTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_SULUserNotificationCenterExampleTests.framework; path = "Pods-SULUserNotificationCenterExampleTests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		81FC3C92620B1409B226364FF8695B40 /* Pods-SULUserNotificationCenterExampleTests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-SULUserNotificationCenterExampleTests-resources.sh"; sourceTree = "<group>"; };
 		8A1F953F67FEBBB96B42CBDBDC9EE980 /* Pods-SULUserNotificationCenterExampleTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SULUserNotificationCenterExampleTests.release.xcconfig"; sourceTree = "<group>"; };
 		8CEEF15325804C41FDC1DA5760306A61 /* Pods-SULUserNotificationCenterExampleTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SULUserNotificationCenterExampleTests-acknowledgements.plist"; sourceTree = "<group>"; };
-		8F520B271EC40A6E00CC900F /* SULUserNotificationWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SULUserNotificationWindowController.swift; sourceTree = "<group>"; };
-		8F520B281EC40A6E00CC900F /* SULUserNotificationWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SULUserNotificationWindowController.xib; sourceTree = "<group>"; };
-		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		98B18347DE70876471B3D62470C04157 /* Pods-SULUserNotificationCenterExampleTests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-SULUserNotificationCenterExampleTests-umbrella.h"; sourceTree = "<group>"; };
 		B1A8B8CEAB293403C48EFF60069D4271 /* Pods-SULUserNotificationCenterExample-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-SULUserNotificationCenterExample-frameworks.sh"; sourceTree = "<group>"; };
 		B28630F37E683B169DC6D9113144C390 /* SULUserNotificationCenter.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SULUserNotificationCenter.xcconfig; sourceTree = "<group>"; };
 		BB5C3456E29B8C19BD626BACE90E27FC /* Pods-SULUserNotificationCenterExampleTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SULUserNotificationCenterExampleTests.debug.xcconfig"; sourceTree = "<group>"; };
 		C29EE086743C9E9C2B11E08521A9D6A3 /* Pods-SULUserNotificationCenterExample-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-SULUserNotificationCenterExample-acknowledgements.markdown"; sourceTree = "<group>"; };
+		C39F0B88EA8216401A798D3C0F808A48 /* SULUserNotificationBackgroundView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SULUserNotificationBackgroundView.swift; sourceTree = "<group>"; };
 		CAB223326D15800AA97760D976529A71 /* Pods-SULUserNotificationCenterExampleTests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-SULUserNotificationCenterExampleTests-acknowledgements.markdown"; sourceTree = "<group>"; };
-		CC206BDDF5200C78A2A301231DF14184 /* Pods_SULUserNotificationCenterExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SULUserNotificationCenterExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CC206BDDF5200C78A2A301231DF14184 /* Pods_SULUserNotificationCenterExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_SULUserNotificationCenterExample.framework; path = "Pods-SULUserNotificationCenterExample.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC207787F6B1FFFC8AA273DB84C587F7 /* Pods-SULUserNotificationCenterExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SULUserNotificationCenterExample.release.xcconfig"; sourceTree = "<group>"; };
+		CE7EF675F76659FA78D4DE0940688FF1 /* SULUserNotificationWindowController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SULUserNotificationWindowController.swift; sourceTree = "<group>"; };
 		D38FCEED1DF3343127A0D7A7BB8F5CC7 /* Pods-SULUserNotificationCenterExample-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-SULUserNotificationCenterExample-umbrella.h"; sourceTree = "<group>"; };
 		D3A2009CFC3BF5C18E61E7D8B94630D1 /* SULUserNotificationCenter-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SULUserNotificationCenter-dummy.m"; sourceTree = "<group>"; };
-		F48EA9BF0F7401C55DF186F08FEB539D /* SULUserNotificationBackgroundView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SULUserNotificationBackgroundView.swift; sourceTree = "<group>"; };
 		FBED18A6EDAD1C862FB3769B43E0B433 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -145,6 +144,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		6350803B0057DC90A018C5CDBE5B6ADB /* SULUserNotificationCenter */ = {
+			isa = PBXGroup;
+			children = (
+				7E18A3F2E2A76F209AEE52F040E0B8DF /* Classes */,
+			);
+			name = SULUserNotificationCenter;
+			path = SULUserNotificationCenter;
+			sourceTree = "<group>";
+		};
 		6BBE1F26519C1AD6BF28D028EEF18A3A /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -159,20 +167,6 @@
 			path = "Example/Pods/Target Support Files/SULUserNotificationCenter";
 			sourceTree = "<group>";
 		};
-		7C905E12AD41D0BC67F6EF4DE055ED65 /* Classes */ = {
-			isa = PBXGroup;
-			children = (
-				66707CC30986823354784DD3DBA5C44E /* NSViewBorderExtension.swift */,
-				F48EA9BF0F7401C55DF186F08FEB539D /* SULUserNotificationBackgroundView.swift */,
-				15A4E7EE7997DE87BC82967BDB6C2CC3 /* SULUserNotificationButton.swift */,
-				80C6FB091CCA4CA3FED38BFF9597AE01 /* SULUserNotificationCenter.swift */,
-				74DCA4386A6181F24FC9BED22EC73EAC /* SULUserNotificationCenter.xib */,
-				8F520B271EC40A6E00CC900F /* SULUserNotificationWindowController.swift */,
-				8F520B281EC40A6E00CC900F /* SULUserNotificationWindowController.xib */,
-			);
-			path = Classes;
-			sourceTree = "<group>";
-		};
 		7DB346D0F39D3F0E887471402A8071AB = {
 			isa = PBXGroup;
 			children = (
@@ -182,6 +176,20 @@
 				933DB7598BFBC9B6414F426944DDA7F4 /* Products */,
 				F203B32CDC5AC8CA350D6252FCC7FC71 /* Targets Support Files */,
 			);
+			sourceTree = "<group>";
+		};
+		7E18A3F2E2A76F209AEE52F040E0B8DF /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				3B84D6FFA508C198E47048393A03A742 /* NSViewBorderExtension.swift */,
+				C39F0B88EA8216401A798D3C0F808A48 /* SULUserNotificationBackgroundView.swift */,
+				7506B7AC4772E810F428990F7D9D2715 /* SULUserNotificationButton.swift */,
+				0C22277FE117EB79ABE731D83DBF3B74 /* SULUserNotificationCenter.swift */,
+				CE7EF675F76659FA78D4DE0940688FF1 /* SULUserNotificationWindowController.swift */,
+				12F1D48F9B267512FFEAAF3B449C581C /* SULUserNotificationWindowController.xib */,
+			);
+			name = Classes;
+			path = Classes;
 			sourceTree = "<group>";
 		};
 		80819A6B64D4F10F6DCEBB2A424280A9 /* Pods-SULUserNotificationCenterExampleTests */ = {
@@ -212,14 +220,6 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		B5E7518BC828A4E2B1D520D8B8995F96 /* SULUserNotificationCenter */ = {
-			isa = PBXGroup;
-			children = (
-				7C905E12AD41D0BC67F6EF4DE055ED65 /* Classes */,
-			);
-			path = SULUserNotificationCenter;
-			sourceTree = "<group>";
-		};
 		F203B32CDC5AC8CA350D6252FCC7FC71 /* Targets Support Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -232,7 +232,7 @@
 		F57734DF0B1ABC96750F22319787610F /* SULUserNotificationCenter */ = {
 			isa = PBXGroup;
 			children = (
-				B5E7518BC828A4E2B1D520D8B8995F96 /* SULUserNotificationCenter */,
+				6350803B0057DC90A018C5CDBE5B6ADB /* SULUserNotificationCenter */,
 				6BBE1F26519C1AD6BF28D028EEF18A3A /* Support Files */,
 			);
 			name = SULUserNotificationCenter;
@@ -291,7 +291,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 42922D1456ACA98B6B2A95DB0442B3E8 /* Build configuration list for PBXNativeTarget "SULUserNotificationCenter" */;
 			buildPhases = (
-				3729C6D0B38B61252BF9F3F315EC7ECF /* Sources */,
+				8431ABE154F2A3AEEBCEBB3454077B81 /* Sources */,
 				146D9374FB1434F95136FBD337DBA947 /* Frameworks */,
 				2E9BBFA71B8912AA235E5804E0D5E8EB /* Headers */,
 			);
@@ -350,25 +350,25 @@
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		3729C6D0B38B61252BF9F3F315EC7ECF /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				F4D26C884322A00F0C8C6EBA7E1F8FCE /* NSViewBorderExtension.swift in Sources */,
-				846C3A029E7B0EA97B83287190D5BDAD /* SULUserNotificationBackgroundView.swift in Sources */,
-				DE14DB308FC55A8EEBB8A9F21CF39D95 /* SULUserNotificationButton.swift in Sources */,
-				383A5F9CCDB1D24D14FBC7DD372C26DF /* SULUserNotificationCenter-dummy.m in Sources */,
-				B7C8FE61CC82E19E6C9402B7A2605627 /* SULUserNotificationCenter.swift in Sources */,
-				0536CCEA8F1CDC9A29435B9EDFA5EFC3 /* SULUserNotificationCenter.xib in Sources */,
-				8F520B291EC40A6E00CC900F /* SULUserNotificationWindowController.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		71CBD2B444CF715F8BFC984A42D7CB51 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				B4FDDBB905B798CF514D25DAFDB4DDC8 /* Pods-SULUserNotificationCenterExample-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8431ABE154F2A3AEEBCEBB3454077B81 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8AF850CFE371DF4724DD58D272B96514 /* NSViewBorderExtension.swift in Sources */,
+				5E9035CCCC45CAE5B181571C60D9B8A2 /* SULUserNotificationBackgroundView.swift in Sources */,
+				C9E431A067758C3095D70CF90D6C849D /* SULUserNotificationButton.swift in Sources */,
+				6252770B544935408B5C253373550CCF /* SULUserNotificationCenter-dummy.m in Sources */,
+				01B305555089564209AD0A51434BD142 /* SULUserNotificationCenter.swift in Sources */,
+				B6772815C025075C5F1F36ACBEFF5140 /* SULUserNotificationWindowController.swift in Sources */,
+				E4D99F436B8C4DD4205D3D26A4095A8D /* SULUserNotificationWindowController.xib in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
