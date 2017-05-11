@@ -1,0 +1,16 @@
+PODS:
+  - SULUserNotificationCenter (0.1.0)
+
+DEPENDENCIES:
+  - SULUserNotificationCenter (from `../`)
+
+EXTERNAL SOURCES:
+  SULUserNotificationCenter:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  SULUserNotificationCenter: fe7598f1d0535abd28fbb953d7f920f0011ac67c
+
+PODFILE CHECKSUM: 415dfb53660677e5958426f4615833b9c97a37f1
+
+COCOAPODS: 1.1.1

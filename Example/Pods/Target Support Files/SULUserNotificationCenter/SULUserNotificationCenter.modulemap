@@ -1,0 +1,6 @@
+framework module SULUserNotificationCenter {
+  umbrella header "SULUserNotificationCenter-umbrella.h"
+
+  export *
+  module * { export * }
+}
