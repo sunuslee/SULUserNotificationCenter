@@ -69,7 +69,6 @@ class SULUserNotificationWindowController: NSWindowController {
         addContentImage()
         resizeTextField()
         appendSubtitle()
-        
     }
     
     public convenience init(_ notification:NSUserNotification,
@@ -78,7 +77,6 @@ class SULUserNotificationWindowController: NSWindowController {
         // init props
         currentNotification = notification
         notificationCenter = center
-        
     }
     
     public func displayNotification() {

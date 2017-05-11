@@ -28,8 +28,13 @@ class ViewController: NSViewController, NSUserNotificationCenterDelegate, SULUse
         notification.contentImage = NSImage.init(named: "icon-wb")
         //notification.setLeftContentImage(NSImage.init(named: "icon-wb")!)
         notification.leftImage = NSImage.init(named: "icon-wb")
-        SULcenter.deliver(notification)
-        NScenter.deliver(notification)
+        
+        notification.deliveryDate = NSDate.init(timeIntervalSinceNow: 20) as Date
+        print("\(NSDate.init(timeIntervalSinceNow: 0)) ->  \(notification.deliveryDate!)")
+        //SULcenter.deliver(notification)
+        SULcenter.scheduleNotification(notification)
+        //NScenter.deliver(notification)
+        NScenter.scheduleNotification(notification)
     }
 }
 
@@ -46,6 +51,9 @@ extension ViewController{
     }
     
     func userNotificationCenter(_ center: SULUserNotificationCenter, shouldPresent notification: NSUserNotification) -> Bool {
+        #if DEBUG
+        Swift.print("Function: \(type(of:self)) \(#function), line: \(#line)")
+        #endif
         return true
     }
     

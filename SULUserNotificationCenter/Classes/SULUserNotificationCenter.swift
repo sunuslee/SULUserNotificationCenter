@@ -50,11 +50,29 @@ open class SULUserNotificationCenter: NSObject {
     
     public func deliver(_ notification: NSUserNotification) {
         
+        notification.deliveryDate = NSDate() as Date
+        
+        if let shouldPresent = self.delegate?.userNotificationCenter(_:shouldPresent:) , !shouldPresent(self, notification) {
+            return
+        }
+        
         let notificationWindow = SULUserNotificationWindowController.init(notification,
                                                                           notificationCenter: self)
         notifications.append(notificationWindow)
         
         notificationWindow.displayNotification()
+    }
+    
+    public func scheduleNotification(_ notification: NSUserNotification) {
+        // TODO
+        if let ddate = notification.deliveryDate, NSDate().compare(ddate) == .orderedAscending {
+            // TODO deliver later
+            self.perform(#selector(deliver(_:)),
+                         with: notification,
+                         afterDelay: ddate.timeIntervalSinceNow)
+        } else {
+            self.deliver(notification)
+        }
         
     }
     
