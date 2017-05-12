@@ -74,7 +74,6 @@ class SULUserNotificationWindowController: NSWindowController {
     public convenience init(_ notification:NSUserNotification,
                             notificationCenter center:SULUserNotificationCenter) {
         self.init(windowNibName: "SULUserNotificationWindowController")
-        // init props
         currentNotification = notification
         notificationCenter = center
     }
@@ -93,8 +92,8 @@ class SULUserNotificationWindowController: NSWindowController {
                                     notificationY,
                                     0,
                                     w.frame.size.height)
-        w.setFrame(NSMakeRect(mainScreenFrame.size.width, notificationY, 0, w.frame.size.height),
-                   display: true)
+        //w.setFrame(NSMakeRect(mainScreenFrame.size.width, notificationY, 0, w.frame.size.height),
+        //           display: true)
         
         let midFrame = NSMakeRect(mainScreenFrame.size.width - notificationWidth + mainScreenFrame.origin.x,
                                   notificationY,
@@ -129,7 +128,6 @@ class SULUserNotificationWindowController: NSWindowController {
         animation2.start(when: animation1, reachesProgress: 1.0)
         animation1.start()
     }
-    
     
     func addButton()  {
         guard let window = self.window,
@@ -207,17 +205,8 @@ class SULUserNotificationWindowController: NSWindowController {
             subtitle.stringValue = st
             subtitle.isHidden = false
             var frame = informativeText.frame
-            //frame.origin.y -= 1
             frame.size.height = 16
             informativeText.frame = frame
-            
-            /*
-            if #available(OSX 10.11, *) {
-                informativeText.maximumNumberOfLines = 1
-            } else {
-                // Fallback on earlier versions
-            }
- */
         } else {
             subtitle.isHidden = true
         }
@@ -252,5 +241,4 @@ class SULUserNotificationWindowController: NSWindowController {
         }
         NSAnimationContext.endGrouping()
     }
-    
 }

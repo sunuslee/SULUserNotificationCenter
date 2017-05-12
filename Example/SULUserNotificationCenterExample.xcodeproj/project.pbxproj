@@ -13,7 +13,8 @@
 		8F530C4B1EC2E8D800008174 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8F530C4A1EC2E8D800008174 /* Assets.xcassets */; };
 		8F530C4E1EC2E8D800008174 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F530C4C1EC2E8D800008174 /* Main.storyboard */; };
 		8F530C591EC2E8D800008174 /* SULUserNotificationCenterExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F530C581EC2E8D800008174 /* SULUserNotificationCenterExampleTests.swift */; };
-		8FAC1F251EC306DD00FE8495 /* icon-wb.png in Resources */ = {isa = PBXBuildFile; fileRef = 8FAC1F241EC306DD00FE8495 /* icon-wb.png */; };
+		8FAC1F251EC306DD00FE8495 /* left-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 8FAC1F241EC306DD00FE8495 /* left-icon.png */; };
+		8FBD642F1EC560DE00987C9E /* right-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 8FBD642E1EC560DE00987C9E /* right-icon.png */; };
 		B47C253F7BDED64915AF1E73 /* Pods_SULUserNotificationCenterExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F17C3EA58D77C044C0FB8CE2 /* Pods_SULUserNotificationCenterExample.framework */; };
 /* End PBXBuildFile section */
 
@@ -41,7 +42,8 @@
 		8F530C541EC2E8D800008174 /* SULUserNotificationCenterExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SULUserNotificationCenterExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F530C581EC2E8D800008174 /* SULUserNotificationCenterExampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SULUserNotificationCenterExampleTests.swift; sourceTree = "<group>"; };
 		8F530C5A1EC2E8D800008174 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8FAC1F241EC306DD00FE8495 /* icon-wb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-wb.png"; sourceTree = "<group>"; };
+		8FAC1F241EC306DD00FE8495 /* left-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "left-icon.png"; sourceTree = "<group>"; };
+		8FBD642E1EC560DE00987C9E /* right-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "right-icon.png"; sourceTree = "<group>"; };
 		C3778B163EE2DAE9FA4CC058 /* Pods-SULUserNotificationCenterExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SULUserNotificationCenterExample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SULUserNotificationCenterExample/Pods-SULUserNotificationCenterExample.debug.xcconfig"; sourceTree = "<group>"; };
 		F17C3EA58D77C044C0FB8CE2 /* Pods_SULUserNotificationCenterExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SULUserNotificationCenterExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -98,7 +100,8 @@
 		8F530C451EC2E8D800008174 /* SULUserNotificationCenterExample */ = {
 			isa = PBXGroup;
 			children = (
-				8FAC1F241EC306DD00FE8495 /* icon-wb.png */,
+				8FAC1F241EC306DD00FE8495 /* left-icon.png */,
+				8FBD642E1EC560DE00987C9E /* right-icon.png */,
 				8F530C461EC2E8D800008174 /* AppDelegate.swift */,
 				8F530C481EC2E8D800008174 /* ViewController.swift */,
 				8F530C4A1EC2E8D800008174 /* Assets.xcassets */,
@@ -220,8 +223,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				8F530C4B1EC2E8D800008174 /* Assets.xcassets in Resources */,
+				8FBD642F1EC560DE00987C9E /* right-icon.png in Resources */,
 				8F530C4E1EC2E8D800008174 /* Main.storyboard in Resources */,
-				8FAC1F251EC306DD00FE8495 /* icon-wb.png in Resources */,
+				8FAC1F251EC306DD00FE8495 /* left-icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

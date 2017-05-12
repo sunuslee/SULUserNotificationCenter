@@ -25,16 +25,14 @@ class ViewController: NSViewController, NSUserNotificationCenterDelegate, SULUse
         notification.informativeText = "NSNotification informativeText A very long text to testing something weird A very long text to testing something weird"
         notification.actionButtonTitle = "Action Title"
         notification.otherButtonTitle = "Other Title"
-        notification.contentImage = NSImage.init(named: "icon-wb")
-        //notification.setLeftContentImage(NSImage.init(named: "icon-wb")!)
-        notification.leftImage = NSImage.init(named: "icon-wb")
-        
+        notification.contentImage = NSImage.init(named: "right-icon")
+        notification.leftImage = NSImage.init(named: "left-icon")
         notification.deliveryDate = NSDate.init(timeIntervalSinceNow: 20) as Date
         print("\(NSDate.init(timeIntervalSinceNow: 0)) ->  \(notification.deliveryDate!)")
-        //SULcenter.deliver(notification)
-        SULcenter.scheduleNotification(notification)
-        //NScenter.deliver(notification)
-        NScenter.scheduleNotification(notification)
+        SULcenter.deliver(notification)
+        //SULcenter.scheduleNotification(notification)
+        NScenter.deliver(notification)
+        //NScenter.scheduleNotification(notification)
     }
 }
 
