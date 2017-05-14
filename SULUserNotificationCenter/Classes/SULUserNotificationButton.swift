@@ -8,11 +8,11 @@
 
 import Cocoa
 
-enum SUL_BorderEdge {
-    case top
-    case left
-    case bottom
-    case right
+enum SUL_BorderEdge: Int {
+    case top = 1
+    case left = 2
+    case bottom = 4
+    case right = 8
     case unknown
 }
 
@@ -68,13 +68,7 @@ open class SULUserNotificationButton: NSButton {
     
     public convenience init(_ frame:CGRect, title:String, target:AnyObject?, action:Selector?) {
         self.init()
-        let pa = NSMutableParagraphStyle()
-        pa.alignment = .center
-        self.attributedTitle = NSAttributedString(string: title, attributes:[
-            NSFontAttributeName: NSFont.boldSystemFont(ofSize: 12),
-            NSForegroundColorAttributeName:actionButtonColor,
-            NSParagraphStyleAttributeName: pa
-            ])
+        self.setSULButtonTitle(title: title)
         self.target = target
         self.action = action
         self.frame = frame
@@ -84,7 +78,42 @@ open class SULUserNotificationButton: NSButton {
         self.layer?.backgroundColor = SULUserNotificationButton.buttonColor
         self.layer?.SUL_addBorder(edge: .left, color: SULUserNotificationButton.buttonBorderColor, thickness: 1.0)
     }
-    public func addBottomBorder() {
-        self.layer?.SUL_addBorder(edge: .bottom, color: SULUserNotificationButton.buttonBorderColor, thickness: 1.0)
+    
+    func buttonAttributes() -> [String:Any] {
+        let pa = NSMutableParagraphStyle()
+        pa.alignment = .center
+        let attrs = [
+            NSFontAttributeName: NSFont.boldSystemFont(ofSize: 12),
+            NSForegroundColorAttributeName:actionButtonColor,
+            NSParagraphStyleAttributeName: pa
+        ]
+        return attrs
+    }
+    
+    func setSULButtonTitle(title:String?) {
+        guard let t = title else {
+            return
+        }
+        self.attributedTitle = NSAttributedString(string: t, attributes:self.buttonAttributes())
+        
+    }
+    
+    func addBorder(borders:Int) {
+        if (borders & SUL_BorderEdge.top.rawValue) != 0 {
+            self.layer?.SUL_addBorder(edge: .top, color: SULUserNotificationButton.buttonBorderColor, thickness: 1.0)
+        }
+        
+        if (borders & SUL_BorderEdge.bottom.rawValue) != 0 {
+            self.layer?.SUL_addBorder(edge: .bottom, color: SULUserNotificationButton.buttonBorderColor, thickness: 1.0)
+        }
+        
+        if (borders & SUL_BorderEdge.left.rawValue) != 0 {
+            self.layer?.SUL_addBorder(edge: .left, color: SULUserNotificationButton.buttonBorderColor, thickness: 1.0)
+        }
+        
+        if (borders & SUL_BorderEdge.right.rawValue) != 0 {
+            self.layer?.SUL_addBorder(edge: .right, color: SULUserNotificationButton.buttonBorderColor, thickness: 1.0)
+        }
+        
     }
 }

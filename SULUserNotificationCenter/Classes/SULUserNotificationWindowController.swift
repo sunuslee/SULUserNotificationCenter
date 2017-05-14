@@ -8,30 +8,43 @@
 
 import Cocoa
 
+class SULUserNotificationWindow:NSWindow {
+    override var canBecomeKey: Bool {
+        get {
+            return true
+        }
+    }
+}
+
 class SULUserNotificationWindowController: NSWindowController {
     
     @IBOutlet weak var title: NSTextField!
     @IBOutlet weak var informativeText: NSTextField!
     @IBOutlet weak var leftContentImageView: NSImageView!
     @IBOutlet weak var subtitle: NSTextField!
+    @IBOutlet weak var replyTextField: NSTextField!
     
     
     var identifier:String?
     
     let notificationWidth:CGFloat = 344.0
-    let notificationHeight:CGFloat = 64.0
-    let actionButtonWidth:CGFloat = 80.0
+    var notificationHeight:CGFloat = 64.0
+    var actionButtonWidth:CGFloat = 80.0
     let contentImageWidth:CGFloat = 40.0
     let contentImageHeight:CGFloat = 40.0
     let notificationY:CGFloat = 795.0
+    let defaultInformativeTextWidth:CGFloat = 274.0
     
     var currentNotification: NSUserNotification?
+    var actionButton:SULUserNotificationButton?
+    var otherButton:SULUserNotificationButton?
     var hasActionButton = true
     var hasOtherButton = false
     var hasReplyButton = false
     var actionButtonTitle:String?
     var otherButtonTitle:String?
     var contentImage:NSImage?
+    var rightContentImageView:NSImageView?
     var leftContentImage:NSImage?
     
     var notificationCenter:SULUserNotificationCenter?
@@ -65,10 +78,15 @@ class SULUserNotificationWindowController: NSWindowController {
         
         leftContentImageView.image = leftContentImage
         
+        var windowFrame = w.frame
+        windowFrame.size.height = notificationHeight
+        w.setFrame(windowFrame, display: true)
+        
         addButton()
         addContentImage()
-        resizeTextField()
+        resizeTextField(isReplyMode: false)
         appendSubtitle()
+        
     }
     
     public convenience init(_ notification:NSUserNotification,
@@ -76,6 +94,7 @@ class SULUserNotificationWindowController: NSWindowController {
         self.init(windowNibName: "SULUserNotificationWindowController")
         currentNotification = notification
         notificationCenter = center
+        notificationHeight = 64
     }
     
     public func displayNotification() {
@@ -88,23 +107,24 @@ class SULUserNotificationWindowController: NSWindowController {
         w.level = Int(CGWindowLevelForKey(.floatingWindow))
         
         
+        
         let startFrame = NSMakeRect(mainScreenFrame.size.width + mainScreenFrame.origin.x,
                                     notificationY,
                                     0,
-                                    w.frame.size.height)
+                                    notificationHeight)
         //w.setFrame(NSMakeRect(mainScreenFrame.size.width, notificationY, 0, w.frame.size.height),
         //           display: true)
         
         let midFrame = NSMakeRect(mainScreenFrame.size.width - notificationWidth + mainScreenFrame.origin.x,
                                   notificationY,
                                   notificationWidth,
-                                  w.frame.size.height)
+                                  notificationHeight)
         
         
         let endFrame = NSMakeRect(mainScreenFrame.size.width - notificationWidth - 20 + mainScreenFrame.origin.x - 350,
                                   notificationY,
                                   notificationWidth,
-                                  w.frame.size.height)
+                                  notificationHeight)
         
         let animationEndFrame:[String:Any] = [NSViewAnimationTargetKey: w,
                                               NSViewAnimationStartFrameKey: midFrame,
@@ -139,21 +159,21 @@ class SULUserNotificationWindowController: NSWindowController {
         let buttonHeight = window.frame.size.height / 2.0
         let otherButtonFrame = NSMakeRect(notificationWidth - actionButtonWidth, buttonHeight, actionButtonWidth, buttonHeight);
         let actionButtonFrame = NSMakeRect(notificationWidth - actionButtonWidth, 0, actionButtonWidth, buttonHeight);
-        let otherButton = SULUserNotificationButton.init(otherButtonFrame,
+        otherButton = SULUserNotificationButton.init(otherButtonFrame,
                                                          title: otherButtonTitle,
                                                          target: self,
                                                          action: #selector(clickOtherButton(_:)))
         
-        let actionButton = SULUserNotificationButton.init(actionButtonFrame,
+        actionButton = SULUserNotificationButton.init(actionButtonFrame,
                                                           title: actionButtonTitle,
                                                           target: self,
                                                           action: #selector(clickActionButton(_:)))
         
-        otherButton.addBottomBorder()
+        otherButton!.addBorder(borders: SUL_BorderEdge.bottom.rawValue)
         NSAnimationContext.beginGrouping()
         NSAnimationContext.current().duration = 1.0
-        contentView.animator().addSubview(otherButton)
-        contentView.animator().addSubview(actionButton)
+        contentView.animator().addSubview(otherButton!)
+        contentView.animator().addSubview(actionButton!)
         NSAnimationContext.endGrouping()
     }
     
@@ -163,8 +183,8 @@ class SULUserNotificationWindowController: NSWindowController {
         else { return }
         
         img.size = NSMakeSize(contentImageWidth, contentImageHeight)
-        let imgView = NSImageView()
-        imgView.image = img
+        rightContentImageView = NSImageView()
+        rightContentImageView?.image = img
         var originX = notificationWidth - contentImageWidth - 8
         let originY = (notificationHeight - contentImageHeight) / 2.0
         if let _ = currentNotification?.actionButtonTitle,
@@ -172,21 +192,27 @@ class SULUserNotificationWindowController: NSWindowController {
             originX -= actionButtonWidth
         }
         
-        imgView.frame = NSMakeRect(originX,
-                                   originY,
-                                   contentImageWidth,
-                                   contentImageHeight)
+        rightContentImageView?.frame = NSMakeRect(originX,
+                                                 originY,
+                                                 contentImageWidth,
+                                                 contentImageHeight)
         
-        contentView.addSubview(imgView)
+        contentView.addSubview(rightContentImageView!)
     }
     
-    func resizeTextField() {
+    func resizeTextField(isReplyMode:Bool) {
         var spaceToReduce:CGFloat = 0
         
-        if let s = currentNotification?.actionButtonTitle, !s.isEmpty {
-            spaceToReduce += actionButtonWidth
-        } else if let ss = currentNotification?.otherButtonTitle, !ss.isEmpty {
-            spaceToReduce += actionButtonWidth
+        if !isReplyMode {
+            if let s = currentNotification?.actionButtonTitle, !s.isEmpty {
+                spaceToReduce += actionButtonWidth
+            } else if let ss = currentNotification?.otherButtonTitle, !ss.isEmpty {
+                spaceToReduce += actionButtonWidth
+            }    
+        } else {
+            var frame = informativeText.frame
+            frame.origin.y = (frame.origin.y - frame.size.height)
+            frame.size.height = frame.size.height * 2.0
         }
         
         if let _ = currentNotification?.contentImage {
@@ -195,9 +221,22 @@ class SULUserNotificationWindowController: NSWindowController {
         
         if spaceToReduce != 0 {
             var frame = informativeText.frame
-            frame.size.width = frame.size.width - spaceToReduce
+            frame.size.width = defaultInformativeTextWidth - spaceToReduce
+            informativeText.frame = frame
+            
+        }
+        
+        if isReplyMode {
+            if #available(OSX 10.11, *) {
+                informativeText.maximumNumberOfLines = 2
+            }
+            var frame = informativeText.frame
+            frame.origin.y -= frame.size.height
+            frame.size.height *= 2.0
             informativeText.frame = frame
         }
+        
+        
     }
     
     func appendSubtitle() {
@@ -212,13 +251,67 @@ class SULUserNotificationWindowController: NSWindowController {
         }
     }
     
+    func drawReplyView() {
+        // subtitle is hidden when in reply mode
+        // same in system's ui style
+        subtitle.isHidden = true
+        if let rightContentImageFrame = rightContentImageView?.frame {
+            let x = notificationWidth - contentImageWidth - 12
+            let y = notificationHeight - contentImageHeight - 12
+            let frame = NSMakeRect(x,
+                                   y,
+                                   rightContentImageFrame.width,
+                                   rightContentImageFrame.height)
+            rightContentImageView?.frame = frame
+        }
+        if let actionButtonFrame = actionButton?.frame,
+            let _ = otherButton?.frame {
+            actionButtonWidth = notificationWidth / 2.0
+            var f = actionButtonFrame
+            f.size.width = actionButtonWidth
+            f.origin = NSMakePoint(actionButtonWidth, 0)
+            actionButton?.frame = f
+            f.origin = NSZeroPoint
+            otherButton?.frame = f
+            otherButton!.addBorder(borders: SUL_BorderEdge.top.rawValue)
+            actionButton?.addBorder(borders: SUL_BorderEdge.top.rawValue)
+            actionButton?.setSULButtonTitle(title: currentNotification?.replyButtonTitle)
+            
+            actionButton?.action = #selector(clickReplyButton(_:))
+        }
+        
+        resizeTextField(isReplyMode: true)
+        
+        if #available(OSX 10.10, *) {
+            if let ph = currentNotification?.responsePlaceholder {
+                self.replyTextField.placeholderString = ph
+            }
+        }
+        
+        return
+    }
+    
     func clickActionButton(_ sender:Any)  {
         #if DEBUG
-        Swift.print("Function: \(type(of:self)) \(#function), line: \(#line)")
+            Swift.print("Function: \(type(of:self)) \(#function), line: \(#line)")
         #endif
-        self.notificationCenter?.delegate?.userNotificationCenter?(notificationCenter!, didActivate: currentNotification!)
-        self.close()
+        
+        if let w = self.window, (currentNotification?.hasReplyButton)! {
+            replyTextField.focusRingType = .none
+            replyTextField.wantsLayer = true
+            replyTextField.layer?.cornerRadius = 5.0
+            notificationHeight = 142
+            var windowFrame = w.frame
+            windowFrame.size.height = notificationHeight
+            windowFrame.origin.y -= 76.0
+            drawReplyView()
+            w.setFrame(windowFrame, display: true, animate:true)
+        } else {
+            self.notificationCenter?.delegate?.userNotificationCenter?(notificationCenter!, didActivate: currentNotification!)
+            self.close()
+        }
     }
+    
     
     func clickOtherButton(_ sender:Any)  {
         #if DEBUG
@@ -227,6 +320,16 @@ class SULUserNotificationWindowController: NSWindowController {
         self.notificationCenter?.delegate?.userNotificationCenter?(notificationCenter!, didCancel: currentNotification!)
         self.close()
     }
+    
+    func clickReplyButton(_ sender:Any) {
+        #if DEBUG
+        Swift.print("Function: \(type(of:self)) \(#function), line: \(#line)")
+        #endif
+        self.currentNotification?.SUL_response = replyTextField.attributedStringValue
+        self.notificationCenter?.delegate?.userNotificationCenter?(notificationCenter!, didActivate: currentNotification!)
+        self.close()
+    }
+    
     
     func removeButton() {
         guard let contentView = self.window?.contentView else {
