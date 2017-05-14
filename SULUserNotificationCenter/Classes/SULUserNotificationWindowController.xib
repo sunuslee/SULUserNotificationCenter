@@ -34,7 +34,7 @@
                         <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="placeholder" id="kAv-vi-zR2"/>
                     </imageView>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" setsMaxLayoutWidthAtFirstLayout="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yHZ-Fl-4Hq" userLabel="Title">
-                        <rect key="frame" x="62" y="122" width="266" height="14"/>
+                        <rect key="frame" x="62" y="119" width="266" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" placeholderString="Title placeholder" id="Cso-kD-zDt">
                             <font key="font" metaFont="system"/>

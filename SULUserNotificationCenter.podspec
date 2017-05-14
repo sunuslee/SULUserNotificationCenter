@@ -18,8 +18,9 @@ Pod::Spec.new do |s|
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
   s.description      = <<-DESC
-A Drop in replacement for NSUserNotification with a few handy tweaks, written in Swift 3.0!
-                       DESC
+  A Drop in replacement for NSUserNotification with a few handy tweaks, written in Swift 3.0!
+  See Example for more detail!
+  DESC
 
   s.homepage         = 'https://github.com/sunuslee/SULUserNotificationCenter'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
