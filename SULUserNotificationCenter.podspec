@@ -9,7 +9,7 @@
 Pod::Spec.new do |s|
   s.name             = 'SULUserNotificationCenter'
   s.version          = '0.1.0'
-  s.summary          = 'A short description of SULUserNotificationCenter.'
+  s.summary          = 'A Drop in replacement for NSUserNotification with a few handy tweaks, written in Swift 3.0!'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
@@ -18,13 +18,13 @@ Pod::Spec.new do |s|
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
   s.description      = <<-DESC
-TODO: Add long description of the pod here.
+A Drop in replacement for NSUserNotification with a few handy tweaks, written in Swift 3.0!
                        DESC
 
   s.homepage         = 'https://github.com/sunuslee/SULUserNotificationCenter'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
-  s.author           = { 'sunuslee' => 'xiaotian.lxt@alibaba-inc.com' }
+  s.author           = { 'sunuslee' => 'sunuslee@gmail.com' }
   s.source           = { :git => 'https://github.com/sunuslee/SULUserNotificationCenter.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
