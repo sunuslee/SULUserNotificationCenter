@@ -32,10 +32,10 @@ Pod::Spec.new do |s|
   s.osx.deployment_target = '10.9'
 
   s.source_files = 'SULUserNotificationCenter/Classes/**/*'
-  
-  # s.resource_bundles = {
-  #   'SULUserNotificationCenter' => ['SULUserNotificationCenter/Assets/*.png']
-  # }
+
+  s.resource_bundles = {
+    'SULUserNotificationCenter' => ['SULUserNotificationCenter/Assets/*.xib']
+   }
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'

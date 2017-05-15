@@ -31,7 +31,7 @@
                     <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kDx-X5-Tbz">
                         <rect key="frame" x="11" y="89" width="40" height="40"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="placeholder" id="kAv-vi-zR2"/>
+                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSHomeTemplate" id="kAv-vi-zR2"/>
                     </imageView>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" setsMaxLayoutWidthAtFirstLayout="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yHZ-Fl-4Hq" userLabel="Title">
                         <rect key="frame" x="62" y="119" width="266" height="17"/>
@@ -77,6 +77,6 @@
         </window>
     </objects>
     <resources>
-        <image name="placeholder" width="128" height="128"/>
+        <image name="NSHomeTemplate" width="14" height="14"/>
     </resources>
 </document>
