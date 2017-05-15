@@ -33,9 +33,12 @@ Pod::Spec.new do |s|
 
   s.source_files = 'SULUserNotificationCenter/Classes/**/*'
 
-  s.resource_bundles = {
-    'SULUserNotificationCenter' => ['SULUserNotificationCenter/Assets/*.xib']
-   }
+  s.resources = ['SULUserNotificationCenter/Assets/*.xib']
+
+
+#s.resource_bundles = {
+#   'SULUserNotificationCenter' => ['SULUserNotificationCenter/Assets/*.xib']
+#   }
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
