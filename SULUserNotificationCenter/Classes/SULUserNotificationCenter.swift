@@ -57,9 +57,29 @@ open class SULUserNotificationCenter: NSObject {
         
         let notificationWindow = SULUserNotificationWindowController.init(notification,
                                                                           notificationCenter: self)
-        notifications.append(notificationWindow)
+        //notifications.append(notificationWindow)
+        
+//        notifications.forEach({
+//            $0.moveNotificationDown()
+//        })
+        
+        
+        notifications.insert(notificationWindow, at: 0)
         
         notificationWindow.displayNotification()
+        
+        /*
+        let animations = notifications.map({
+            return $0.moveNotificationDownByNewNotificationAnimation()
+        })
+        
+        let animator = NSViewAnimation(viewAnimations:animations)
+        
+        animator.duration = 0.5
+        
+        animator.start()
+ */
+        
     }
     
     public func scheduleNotification(_ notification: NSUserNotification) {

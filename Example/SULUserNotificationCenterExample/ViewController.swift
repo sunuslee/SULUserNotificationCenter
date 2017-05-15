@@ -10,12 +10,13 @@ import Cocoa
 import SULUserNotificationCenter
 
 class ViewController: NSViewController, NSUserNotificationCenterDelegate, SULUserNotificationCenterDelegate {
+    
+    let SULcenter = SULUserNotificationCenter.default
+    let NScenter = NSUserNotificationCenter.default
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        let SULcenter = SULUserNotificationCenter.default
-        let NScenter = NSUserNotificationCenter.default
         NScenter.delegate = self
         SULcenter.delegate = self
         
@@ -36,7 +37,28 @@ class ViewController: NSViewController, NSUserNotificationCenterDelegate, SULUse
         //SULcenter.scheduleNotification(notification)
         NScenter.deliver(notification)
         //NScenter.scheduleNotification(notification)
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(2)) {
+            self.SULcenter.deliver(notification)
+        }
+        
     }
+    
+    @IBAction func sendNotification(_ sender: Any) {
+        let notification = NSUserNotification.init()
+        notification.title = "NSNotification Title"
+        notification.subtitle = "asdasdasd"
+        notification.informativeText = "NSNotification informativeText A very long text to testing something weird A very long text to testing something weird"
+        notification.actionButtonTitle = "Action Title"
+        notification.otherButtonTitle = "Other Title"
+        notification.contentImage = NSImage.init(named: "right-icon")
+        notification.leftImage = NSImage.init(named: "left-icon")
+        notification.deliveryDate = NSDate.init(timeIntervalSinceNow: 20) as Date
+        notification.hasReplyButton = true
+        notification.responsePlaceholder = "Response Placeholder"
+        notification.replyButtonTitle = "SUL_REPLY"
+        SULcenter.deliver(notification)
+    }
+    
 }
 
 extension ViewController{
