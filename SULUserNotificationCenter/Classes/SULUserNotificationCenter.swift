@@ -29,6 +29,7 @@ open class SULUserNotificationCenter: NSObject {
     
     var currentNotification:NSUserNotification?
     var notifications:[SULUserNotificationWindowController] = []
+    public var compareMode = false
    
     public var delegate:SULUserNotificationCenterDelegate?
     
@@ -48,37 +49,14 @@ open class SULUserNotificationCenter: NSObject {
  */
     
     public func deliver(_ notification: NSUserNotification) {
-        
         notification.deliveryDate = NSDate() as Date
-        
         if let shouldPresent = self.delegate?.userNotificationCenter(_:shouldPresent:) , !shouldPresent(self, notification) {
             return
         }
-        
         let notificationWindow = SULUserNotificationWindowController.init(notification,
                                                                           notificationCenter: self)
-        //notifications.append(notificationWindow)
-        
-//        notifications.forEach({
-//            $0.moveNotificationDown()
-//        })
-        
-        
         notifications.insert(notificationWindow, at: 0)
-        
         notificationWindow.displayNotification()
-        
-        /*
-        let animations = notifications.map({
-            return $0.moveNotificationDownByNewNotificationAnimation()
-        })
-        
-        let animator = NSViewAnimation(viewAnimations:animations)
-        
-        animator.duration = 0.5
-        
-        animator.start()
- */
         
     }
     

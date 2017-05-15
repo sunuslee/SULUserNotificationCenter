@@ -21,11 +21,11 @@ class ViewController: NSViewController, NSUserNotificationCenterDelegate, SULUse
         SULcenter.delegate = self
         
         let notification = NSUserNotification.init()
-        notification.title = "NSNotification Title"
-        notification.subtitle = "asdasdasd"
-        notification.informativeText = "NSNotification informativeText A very long text to testing something weird A very long text to testing something weird"
-        notification.actionButtonTitle = "Action Title"
-        notification.otherButtonTitle = "Other Title"
+        notification.title = "SUL_Notification Title"
+        notification.subtitle = "SUL subtitle"
+        notification.informativeText = "SULUserNotification is a dropin replacement for NSUserNotification"
+        notification.actionButtonTitle = "OK"
+        notification.otherButtonTitle = "Close"
         notification.contentImage = NSImage.init(named: "right-icon")
         notification.leftImage = NSImage.init(named: "left-icon")
         notification.deliveryDate = NSDate.init(timeIntervalSinceNow: 20) as Date
@@ -33,29 +33,25 @@ class ViewController: NSViewController, NSUserNotificationCenterDelegate, SULUse
         notification.responsePlaceholder = "Response Placeholder"
         notification.replyButtonTitle = "SUL_REPLY"
         print("\(NSDate.init(timeIntervalSinceNow: 0)) ->  \(notification.deliveryDate!)")
-        SULcenter.deliver(notification)
-        //SULcenter.scheduleNotification(notification)
+        SULcenter.compareMode = true
+        NScenter.removeAllDeliveredNotifications()
         NScenter.deliver(notification)
-        //NScenter.scheduleNotification(notification)
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(2)) {
-            self.SULcenter.deliver(notification)
-        }
-        
     }
     
     @IBAction func sendNotification(_ sender: Any) {
         let notification = NSUserNotification.init()
-        notification.title = "NSNotification Title"
-        notification.subtitle = "asdasdasd"
-        notification.informativeText = "NSNotification informativeText A very long text to testing something weird A very long text to testing something weird"
-        notification.actionButtonTitle = "Action Title"
-        notification.otherButtonTitle = "Other Title"
+        notification.title = "SUL_Notification Title"
+        notification.subtitle = "SUL subtitle"
+        notification.informativeText = "SULUserNotification is a dropin replacement for NSUserNotification"
+        notification.actionButtonTitle = "REPLY"
+        notification.otherButtonTitle = "Close"
         notification.contentImage = NSImage.init(named: "right-icon")
         notification.leftImage = NSImage.init(named: "left-icon")
         notification.deliveryDate = NSDate.init(timeIntervalSinceNow: 20) as Date
         notification.hasReplyButton = true
         notification.responsePlaceholder = "Response Placeholder"
         notification.replyButtonTitle = "SUL_REPLY"
+        NScenter.deliver(notification)
         SULcenter.deliver(notification)
     }
     

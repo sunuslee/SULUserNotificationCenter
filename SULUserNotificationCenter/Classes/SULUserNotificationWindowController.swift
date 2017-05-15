@@ -27,6 +27,7 @@ class SULUserNotificationWindowController: NSWindowController, NSWindowDelegate 
     
     var identifier:String?
     
+    let notificationRightSpacing:CGFloat = 20.0
     let notificationWidth:CGFloat = 344.0
     var notificationHeight:CGFloat = 64.0
     var actionButtonWidth:CGFloat = 80.0
@@ -34,6 +35,7 @@ class SULUserNotificationWindowController: NSWindowController, NSWindowDelegate 
     let contentImageHeight:CGFloat = 40.0
     let notificationMaxY:CGFloat = 795.0
     var notificationY:CGFloat = 795.0
+    var notificationX:CGFloat = 0
     let defaultInformativeTextWidth:CGFloat = 274.0
     
     var currentNotification: NSUserNotification?
@@ -92,6 +94,12 @@ class SULUserNotificationWindowController: NSWindowController, NSWindowDelegate 
         currentNotification = notification
         notificationCenter = center
         notificationHeight = 64
+        if let mainScreenFrame = NSScreen.main()?.frame {
+            notificationX = mainScreenFrame.origin.x + mainScreenFrame.size.width - notificationWidth - notificationRightSpacing
+            if center.compareMode {
+                notificationX -= 350
+            }
+        }
     }
     
     func moveNotificationUpToPreviousAnimation(offset:CGFloat) -> [String : Any] {
@@ -99,7 +107,7 @@ class SULUserNotificationWindowController: NSWindowController, NSWindowDelegate 
     }
     
     func moveNotificationDownByNewNotificationAnimation() -> [String : Any] {
-        return moveNotificationAnimation(offset: -(64 + 12))
+        return moveNotificationAnimation(offset: -(64 + 10))
     }
     
     func moveNotificationDownByReplyAnimation() -> [String: Any ] {
@@ -107,18 +115,18 @@ class SULUserNotificationWindowController: NSWindowController, NSWindowDelegate 
     }
     
     func moveNotificationAnimation(offset:CGFloat) -> [String:Any] {
-        notificationY += offset
-        var frame = self.window!.frame
-        frame.origin.y = notificationY
         let startFrame = self.window!.frame
-        let endFrame = frame
+        var endFrame = startFrame
+        notificationY += offset
+        endFrame.origin.y = notificationY
+        endFrame.origin.x = notificationX
+        endFrame.size.width = notificationWidth
         let ani = [
             NSViewAnimationTargetKey:self.window!,
             NSViewAnimationStartFrameKey: startFrame,
             NSViewAnimationEndFrameKey: endFrame
         ] as [String : Any];
         return ani
-        
     }
     
     public func displayNotification() {
@@ -136,15 +144,16 @@ class SULUserNotificationWindowController: NSWindowController, NSWindowDelegate 
                                     notificationHeight)
         w.setFrame(startFrame, display: false)
         
-        let midFrame = NSMakeRect(mainScreenFrame.size.width - notificationWidth + mainScreenFrame.origin.x,
+        let midFrame = NSMakeRect(notificationX + notificationRightSpacing,
                                   notificationY,
                                   notificationWidth,
                                   notificationHeight)
         
-        let endFrame = NSMakeRect(mainScreenFrame.size.width - notificationWidth - 20 + mainScreenFrame.origin.x - 350,
+        let endFrame = NSMakeRect(notificationX,
                                   notificationY,
                                   notificationWidth,
                                   notificationHeight)
+        
         
         let animationEndFrame:[String:Any] = [NSViewAnimationTargetKey: w,
                                               NSViewAnimationStartFrameKey: midFrame,
@@ -153,13 +162,13 @@ class SULUserNotificationWindowController: NSWindowController, NSWindowDelegate 
         let animation2 = NSViewAnimation(viewAnimations:[animationEndFrame])
         animation2.animationBlockingMode = NSAnimationBlockingMode.nonblocking
         animation2.duration = 0.15
-        
+
         let animationStartFrame:[String:Any] = [NSViewAnimationTargetKey: w,
                                                 NSViewAnimationStartFrameKey: startFrame,
                                                 NSViewAnimationEndFrameKey: midFrame,
                                                 // this keeps animation2 alive util animation1 finished
-            // so animation1->animationStartFrame->animation2
-            "retainAnimationObject": animation2]
+                                                // so animation1->animationStartFrame->animation2
+                                                "retainAnimationObject": animation2]
         
         var otherNotificationsAnimations:[[String:Any]] = []
         
@@ -173,11 +182,13 @@ class SULUserNotificationWindowController: NSWindowController, NSWindowDelegate 
         otherNotificationsAnimations.insert(animationStartFrame, at: 0)
         
         let animation1 = NSViewAnimation(viewAnimations:otherNotificationsAnimations)
-        animation1.animationBlockingMode = NSAnimationBlockingMode.nonblocking
-        animation1.duration = 0.5
-        
-        animation2.start(when: animation1, reachesProgress: 1.0)
+        animation1.animationBlockingMode = .nonblocking
+        animation1.duration = 0.50
         animation1.start()
+        
+        animation2.animationBlockingMode = .nonblocking
+        animation2.duration = 0.15
+        animation2.start(when: animation1, reachesProgress: 1.0)
     }
     
     func addButton()  {
@@ -348,9 +359,8 @@ class SULUserNotificationWindowController: NSWindowController, NSWindowDelegate 
                 otherNotificationsAnimations.append(contentsOf: t)
             }
             let animator = NSViewAnimation(viewAnimations:otherNotificationsAnimations)
-            animator.duration = 0.5
+            animator.duration = 0.65
             animator.start()
-            
         } else {
             self.notificationCenter?.delegate?.userNotificationCenter?(notificationCenter!, didActivate: currentNotification!)
             self.close()
@@ -402,7 +412,7 @@ class SULUserNotificationWindowController: NSWindowController, NSWindowDelegate 
                 $0.moveNotificationUpToPreviousAnimation(offset:offset)
             })
             let animator = NSViewAnimation(viewAnimations:otherNotificationsAnimations)
-            animator.duration = 0.5
+            animator.duration = 0.65
             animator.start()
         }
         if let selfIndex = notificationCenter?.notifications.index(of: self) {
