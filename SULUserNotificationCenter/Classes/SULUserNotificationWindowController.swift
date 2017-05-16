@@ -60,6 +60,13 @@ class SULUserNotificationWindowController: NSWindowController, NSWindowDelegate 
     
     override var windowNibPath: String? {
         get {
+            
+            // if developer copy this file into project's resource
+            if let nibPath = Bundle.main.path(forResource: "SULUserNotificationWindowController", ofType: "nib") {
+                return nibPath
+            }
+            
+            //  install by cocoapods.
             //  The path should be:
             //  /Path/To/MyAwesomeApp.app/Contents/Frameworks/SULUserNotificationCenter.framework/Versions/A/Resources/SULUserNotificationCenter.bundle/Contents/Resources/SULUserNotificationWindowController.nib
             let framework = Bundle.init(for: SULUserNotificationWindowController.self)
