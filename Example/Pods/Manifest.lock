@@ -1,5 +1,5 @@
 PODS:
-  - SULUserNotificationCenter (0.1.1)
+  - SULUserNotificationCenter (0.1.5)
 
 DEPENDENCIES:
   - SULUserNotificationCenter (from `../`)
@@ -9,7 +9,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  SULUserNotificationCenter: c0ee32a6314e878deb6fba85eb888afba80f99dc
+  SULUserNotificationCenter: b4c9a551573e7286052cde6eb33341f886a2aed2
 
 PODFILE CHECKSUM: 415dfb53660677e5958426f4615833b9c97a37f1
 

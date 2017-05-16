@@ -52,6 +52,27 @@ class SULUserNotificationWindowController: NSWindowController, NSWindowDelegate 
     
     var notificationCenter:SULUserNotificationCenter?
     
+    override var windowNibName: String? {
+        get {
+            return "SULUserNotificationWindowController"
+        }
+    }
+    
+    override var windowNibPath: String? {
+        get {
+            //  The path should be:
+            //  /Path/To/MyAwesomeApp.app/Contents/Frameworks/SULUserNotificationCenter.framework/Versions/A/Resources/SULUserNotificationCenter.bundle/Contents/Resources/SULUserNotificationWindowController.nib
+            let framework = Bundle.init(for: SULUserNotificationWindowController.self)
+            guard let bundlePath = framework.path(forResource: "SULUserNotificationCenter", ofType: "bundle"),
+                let bundle = Bundle.init(path: bundlePath),
+                let nibPath = bundle.path(forResource: "SULUserNotificationWindowController", ofType: "nib")
+                else {
+                    return "SULUserNotificationWindowController.nib Not FOUND!"
+            }
+            return nibPath
+        }
+    }
+    
     override open func windowDidLoad() {
         super.windowDidLoad()
         // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
@@ -90,7 +111,7 @@ class SULUserNotificationWindowController: NSWindowController, NSWindowDelegate 
     
     public convenience init(_ notification:NSUserNotification,
                             notificationCenter center:SULUserNotificationCenter) {
-        self.init(windowNibName: "SULUserNotificationWindowController")
+        self.init()
         currentNotification = notification
         notificationCenter = center
         notificationHeight = 64

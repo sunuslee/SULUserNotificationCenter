@@ -1,6 +1,6 @@
 {
   "name": "SULUserNotificationCenter",
-  "version": "0.1.1",
+  "version": "0.1.5",
   "summary": "A Drop in replacement for NSUserNotification with a few handy tweaks, written in Swift 3.0!",
   "description": "A Drop in replacement for NSUserNotification with a few handy tweaks, written in Swift 3.0!\nSee Example for more detail!",
   "homepage": "https://github.com/sunuslee/SULUserNotificationCenter",
@@ -13,7 +13,7 @@
   },
   "source": {
     "git": "https://github.com/sunuslee/SULUserNotificationCenter.git",
-    "tag": "0.1.1"
+    "tag": "0.1.5"
   },
   "platforms": {
     "osx": "10.9"

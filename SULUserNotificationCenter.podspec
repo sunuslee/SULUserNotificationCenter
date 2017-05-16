@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'SULUserNotificationCenter'
-  s.version          = '0.1.5'
+  s.version          = '0.1.6'
   s.summary          = 'A Drop in replacement for NSUserNotification with a few handy tweaks, written in Swift 3.0!'
 
 # This description is used to generate tags and improve search results.
@@ -33,12 +33,12 @@ Pod::Spec.new do |s|
 
   s.source_files = 'SULUserNotificationCenter/Classes/**/*'
 
-  s.resources = ['SULUserNotificationCenter/Assets/*.xib']
+#s.resources = ['SULUserNotificationCenter/Assets/*.xib']
 
 
-#s.resource_bundles = {
-#   'SULUserNotificationCenter' => ['SULUserNotificationCenter/Assets/*.xib']
-#   }
+s.resource_bundles = {
+   'SULUserNotificationCenter' => ['SULUserNotificationCenter/Assets/*.xib']
+   }
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
