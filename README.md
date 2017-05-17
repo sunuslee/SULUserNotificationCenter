@@ -1,6 +1,12 @@
 # SULUserNotificationCenter
+
+![Example](https://github.com/sunuslee/SULUserNotificationCenter/blob/master/SULUserNotification.png)
+
+The left one is __delivered by SULUserNotificationCenter__
+
 A Drop in replacement for NSUserNotification with a few handy tweaks, written in Swift 3.0!
-See the example by ```pod try SULUserNotification```
+
+See the example by ``pod try SULUserNotificationCenter``
 
 # Install
 pod "SULUserNotificationCenter"
